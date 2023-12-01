@@ -10,23 +10,15 @@ function convertToRoman(num) {
     };
 
 	//your code here
-	let res = "";
-
-	for (let key in obj) {
-		const [symbol, value] = obj[key];
-		const count = Math.floor(num / value);
-
-		if (count >= 1) {
-			res += symbol.repeat(count);
-			num -= value * count;
-		}
-
-		if (key%2 === 0 && num >= obj[key + 2][1] - value) {
-			res += obj[key + 2][0] + symbol;
-			num -= obj[key + 2][1] - value;
+	let result = '';
+  
+	for (const item of romanNumerals) {
+	    while (num >= item.value) {
+		    result += item.numeral;
+		    num -= item.value;
 		}
 	}
-	return res;
+	return result;
 }
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
 
