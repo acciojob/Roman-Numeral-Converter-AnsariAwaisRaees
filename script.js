@@ -10,24 +10,21 @@ function convertToRoman(num) {
     };
 
 	//your code here
-	let result = '';
-	let currentNum = num;
-	for (let i = 0; i < 7; i++) {
-		let count = Math.floor(currentNum / obj[i][1]);
-		if (count > 0) {
-		    result += obj[i][0].repeat(count);
-		    currentNum %= obj[i][1];
-		}
-	    if (i % 2 === 0 && i < 6 && currentNum >= obj[i + 2][1] - obj[i + 2][1] / 10) {
-		    result += obj[i + 2][0] + obj[i][0];
-		    currentNum -= obj[i + 2][1] - obj[i];
-		}
-	    if (i % 2 === 1 && i < 5 && currentNum >= obj[i + 1][1] - obj[i + 1][1] / 10) {
-		    result += obj[i + 1][0] + obj[i - 1][0];
-		    currentNum -= obj[i + 1][1] - obj[i - 1][1];
+	let romanNumeral = '';
+	let i = 0;
+	
+	while (num > 0) {
+	    const currentNum = obj[i][1];
+	    const currentSymbol = obj[i][0];
+
+	    if (num >= currentNum) {
+		    romanNumeral += currentSymbol;
+		    num -= currentNum;
+		} else {
+		    i++;
 		}
 	}
-	return result;
+	return romanNumeral;
 }
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
 
